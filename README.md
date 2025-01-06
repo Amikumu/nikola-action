@@ -22,13 +22,16 @@ on: [push]
 
 jobs:
   nikola_build:
+    env:
+      commitmsg: ${{ github.event.head_commit.message }}
+      github.actor: tannie
     runs-on: ubuntu-latest
     name: 'Deploy Nikola to GitHub Pages'
     steps:
     - name: Check out
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Build and Deploy Nikola
-      uses: getnikola/nikola-action@v4
+      uses: tannie/nikola-action@main
       with:
         dry_run: false
 ```
